@@ -6,22 +6,19 @@
 //
 
 import Foundation
+import UIKit
 
-class SearchViewModel {
+class SearchViewModel: NSObject {
     //var logger: LoggerProtocol
     private var searcher: Searcher
-    var products: [Product]? {
-        didSet {
-            print(products)
-        }
-    }
+    var products: [Product]?
 
     init(requestManager: RequestManagerRepository.Type) {
         self.searcher = Searcher(requestManager: requestManager)
     }
 
-    func didTapSearchButton() {
-        searcher.search(query: "Tarjeta Grafica Msi Rx 6700 Xt Gaming X 12g Nueva Sellada") { result in
+    func didTapSearchButton(query: String) {
+        searcher.search(query) { result in
             switch result {
             case .success(let products):
                 self.products = products
@@ -29,6 +26,16 @@ class SearchViewModel {
                 print(error)
             }
         }
+    }
+}
+
+extension SearchViewModel: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else {
+            return
+        }
+
+        didTapSearchButton(query: query)
     }
 }
 

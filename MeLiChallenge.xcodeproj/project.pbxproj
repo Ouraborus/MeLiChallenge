@@ -22,6 +22,7 @@
 		C9900A7C261646E2004A88DA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9900A7B261646E2004A88DA /* SearchViewController.swift */; };
 		C9900A812616473A004A88DA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9900A802616473A004A88DA /* SearchViewModel.swift */; };
 		C9900A8A26164882004A88DA /* Searcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9900A8926164882004A88DA /* Searcher.swift */; };
+		C9900A962616612B004A88DA /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9900A952616612B004A88DA /* SearchBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		C9900A7B261646E2004A88DA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C9900A802616473A004A88DA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C9900A8926164882004A88DA /* Searcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searcher.swift; sourceTree = "<group>"; };
+		C9900A952616612B004A88DA /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 		C9900A7A26164692004A88DA /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				C9900A9426166104004A88DA /* SearchBar */,
 				C9900A7B261646E2004A88DA /* SearchViewController.swift */,
 				C9900A802616473A004A88DA /* SearchViewModel.swift */,
 			);
@@ -203,6 +206,14 @@
 				C9900A8926164882004A88DA /* Searcher.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C9900A9426166104004A88DA /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				C9900A952616612B004A88DA /* SearchBarView.swift */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +349,7 @@
 				C9900A7C261646E2004A88DA /* SearchViewController.swift in Sources */,
 				C9900A8A26164882004A88DA /* Searcher.swift in Sources */,
 				C9900A5D261535B9004A88DA /* ServiceError.swift in Sources */,
+				C9900A962616612B004A88DA /* SearchBarView.swift in Sources */,
 				C9900A752616305B004A88DA /* SearchResult.swift in Sources */,
 				C9900A6D26153C33004A88DA /* Product.swift in Sources */,
 				C9900A5C261535B9004A88DA /* ServiceMethod.swift in Sources */,

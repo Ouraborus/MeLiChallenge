@@ -14,7 +14,7 @@ struct Searcher {
         self.requestManager = requestManager
     }
 
-    func search(query: String, completion: @escaping (Result<[Product], ServiceError>) -> Void) {
+    func search(_ query: String, completion: @escaping (Result<[Product], ServiceError>) -> Void) {
         requestManager.getProducts(basedOn: query) { result in
             switch result {
             case .success(let data):
