@@ -8,7 +8,8 @@
 import Foundation
 
 protocol RequestManagerRepository {
-    typealias ProductResponse = (Result<Data, ServiceError>) -> Void
+    typealias Response = (Result<Data, ServiceError>) -> Void
 
-    static func getProducts(basedOn: String, completion: @escaping ProductResponse)
+    static func getProducts(basedOn: String, completion: @escaping Response)
+    static func getSites(completion: @escaping Response)
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C93687D426178FEB00B03341 /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93687D326178FEB00B03341 /* Site.swift */; };
 		C9900A1226153472004A88DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9900A1126153472004A88DA /* AppDelegate.swift */; };
 		C9900A1426153472004A88DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9900A1326153472004A88DA /* SceneDelegate.swift */; };
 		C9900A1B26153474004A88DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9900A1A26153474004A88DA /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C93687D326178FEB00B03341 /* Site.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
 		C9900A0E26153472004A88DA /* MeLiChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeLiChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9900A1126153472004A88DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9900A1326153472004A88DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				C9900A6C26153C33004A88DA /* Product.swift */,
 				C9900A742616305B004A88DA /* SearchResult.swift */,
+				C93687D326178FEB00B03341 /* Site.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				C9900A5D261535B9004A88DA /* ServiceError.swift in Sources */,
 				C9900A962616612B004A88DA /* SearchBarView.swift in Sources */,
 				C9900A752616305B004A88DA /* SearchResult.swift in Sources */,
+				C93687D426178FEB00B03341 /* Site.swift in Sources */,
 				C9900A6D26153C33004A88DA /* Product.swift in Sources */,
 				C9900A5C261535B9004A88DA /* ServiceMethod.swift in Sources */,
 				C9900A5E261535B9004A88DA /* RequestManager.swift in Sources */,

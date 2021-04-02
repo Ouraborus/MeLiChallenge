@@ -29,4 +29,20 @@ struct Searcher {
             }
         }
     }
+
+    func fetchSites(completion: @escaping (Result<[Site], ServiceError>) -> Void) {
+        requestManager.getSites { result in
+            switch result {
+            case .success(let data):
+                guard let result = try? JSONDecoder().decode([Site].self, from: data) else {
+                    return
+                }
+
+                completion(.success(result))
+            case .failure(let error):
+                completion(.failure(error))
+                break
+            }
+        }
+    }
 }

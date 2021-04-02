@@ -42,10 +42,20 @@ class SearchViewController: UIViewController {
         return searchBar
     }()
 
+    private lazy var sitePickerView: UIPickerView = {
+        let picker = UIPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         searchBarView.delegate = viewModel
+        sitePickerView.delegate = viewModel
+        sitePickerView.dataSource = viewModel
         setupView()
+        viewModel.viewDidLoad()
     }
 
     private func setupView() {
@@ -54,6 +64,7 @@ class SearchViewController: UIViewController {
         searchBarView.setupView()
         view.addSubview(headerLabel)
         view.addSubview(searchBarView)
+        view.addSubview(sitePickerView)
 
         headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.headerLabelTopAnchor).isActive = true
         headerLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.headerLabelLeadingAnchor).isActive = true
@@ -64,6 +75,24 @@ class SearchViewController: UIViewController {
         searchBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.searchBarTrailing).isActive = true
         searchBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         searchBarView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
 
+        sitePickerView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: 20).isActive = true
+        sitePickerView.centerXAnchor.constraint(equalTo: searchBarView.centerXAnchor).isActive = true
+        sitePickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+    }
+}
+
+extension SearchViewController: SearchViewDelegate {
+    func reload() {
+        DispatchQueue.main.async { [weak self] in
+            self?.sitePickerView.reloadAllComponents()
+
+            guard let lastSelectedSiteId = UserDefaults.standard.value(forKey: "site.selected") as? String else {
+                return
+            }
+
+            let index = self?.viewModel.sites?.firstIndex { $0.id == lastSelectedSiteId } ?? 0
+            self?.sitePickerView.selectRow(index, inComponent: 0, animated: true)
+        }
+    }
 }
