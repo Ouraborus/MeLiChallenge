@@ -10,12 +10,12 @@ import UIKit
 
 protocol SearchViewDelegate where Self: UIViewController {
     func reload()
+    func userTappedSearch(_ result: [Product])
 }
 
 class SearchViewModel: NSObject {
     //var logger: LoggerProtocol
     private var searcher: Searcher
-    private(set) var products: [Product]?
     private(set) var sites: [Site]?
     weak var delegate: SearchViewDelegate?
 
@@ -43,7 +43,7 @@ class SearchViewModel: NSObject {
         searcher.search(query) { result in
             switch result {
             case .success(let products):
-                self.products = products
+                self.delegate?.userTappedSearch(products)
             case .failure(let error):
                 print(error)
             }

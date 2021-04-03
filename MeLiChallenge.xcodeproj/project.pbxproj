@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C93687D426178FEB00B03341 /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93687D326178FEB00B03341 /* Site.swift */; };
+		C93687DD2617AB0E00B03341 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93687DC2617AB0E00B03341 /* ProductListViewController.swift */; };
+		C93687E52617AB1C00B03341 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93687E42617AB1C00B03341 /* ProductListViewModel.swift */; };
+		C93687EA2617BD0900B03341 /* ProductListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93687E92617BD0900B03341 /* ProductListTableViewCell.swift */; };
 		C9900A1226153472004A88DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9900A1126153472004A88DA /* AppDelegate.swift */; };
 		C9900A1426153472004A88DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9900A1326153472004A88DA /* SceneDelegate.swift */; };
 		C9900A1B26153474004A88DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9900A1A26153474004A88DA /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		C93687D326178FEB00B03341 /* Site.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
+		C93687DC2617AB0E00B03341 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
+		C93687E42617AB1C00B03341 /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
+		C93687E92617BD0900B03341 /* ProductListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewCell.swift; sourceTree = "<group>"; };
 		C9900A0E26153472004A88DA /* MeLiChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeLiChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9900A1126153472004A88DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9900A1326153472004A88DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +100,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C93687DB2617AADF00B03341 /* ProductList */ = {
+			isa = PBXGroup;
+			children = (
+				C93687DC2617AB0E00B03341 /* ProductListViewController.swift */,
+				C93687E42617AB1C00B03341 /* ProductListViewModel.swift */,
+				C93687E92617BD0900B03341 /* ProductListTableViewCell.swift */,
+			);
+			path = ProductList;
+			sourceTree = "<group>";
+		};
 		C9900A0526153472004A88DA = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +204,7 @@
 		C9900A792616467A004A88DA /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C93687DB2617AADF00B03341 /* ProductList */,
 				C9900A7A26164692004A88DA /* Search */,
 			);
 			path = Screens;
@@ -350,14 +367,17 @@
 			files = (
 				C9900A812616473A004A88DA /* SearchViewModel.swift in Sources */,
 				C9900A7C261646E2004A88DA /* SearchViewController.swift in Sources */,
+				C93687DD2617AB0E00B03341 /* ProductListViewController.swift in Sources */,
 				C9900A8A26164882004A88DA /* Searcher.swift in Sources */,
 				C9900A5D261535B9004A88DA /* ServiceError.swift in Sources */,
 				C9900A962616612B004A88DA /* SearchBarView.swift in Sources */,
 				C9900A752616305B004A88DA /* SearchResult.swift in Sources */,
 				C93687D426178FEB00B03341 /* Site.swift in Sources */,
 				C9900A6D26153C33004A88DA /* Product.swift in Sources */,
+				C93687EA2617BD0900B03341 /* ProductListTableViewCell.swift in Sources */,
 				C9900A5C261535B9004A88DA /* ServiceMethod.swift in Sources */,
 				C9900A5E261535B9004A88DA /* RequestManager.swift in Sources */,
+				C93687E52617AB1C00B03341 /* ProductListViewModel.swift in Sources */,
 				C9900A1226153472004A88DA /* AppDelegate.swift in Sources */,
 				C9900A5F261535B9004A88DA /* RequestManagerRepository.swift in Sources */,
 				C9900A1426153472004A88DA /* SceneDelegate.swift in Sources */,

@@ -12,10 +12,10 @@ class SearchViewController: UIViewController {
     private struct Constants {
         static let headerLabelCopy = "MeLi\n Challenge"
         static let headerLabelFont = UIFont(name: "Futura-CondensedExtraBold", size: 50) ?? UIFont()
-        static let headerLabelTopAnchor: CGFloat = 50
+        static let headerLabelTopAnchor: CGFloat = 10
         static let headerLabelLeadingAnchor: CGFloat = 10
         static let headerLabelTrailingAnchor: CGFloat = -10
-        static let headerLabelBottomAnchor: CGFloat = -10
+        static let headerLabelBottomAnchor: CGFloat = -20
         static let searchBarLeading: CGFloat = 5
         static let searchBarTrailing: CGFloat = -5
         static let backgroundColor = UIColor(red: 0.99, green: 0.86, blue: 0.23, alpha: 1.00)
@@ -59,7 +59,8 @@ class SearchViewController: UIViewController {
     }
 
     private func setupView() {
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
         view.backgroundColor = Constants.backgroundColor
         searchBarView.setupView()
         view.addSubview(headerLabel)
@@ -93,6 +94,15 @@ extension SearchViewController: SearchViewDelegate {
 
             let index = self?.viewModel.sites?.firstIndex { $0.id == lastSelectedSiteId } ?? 0
             self?.sitePickerView.selectRow(index, inComponent: 0, animated: true)
+        }
+    }
+
+    func userTappedSearch(_ result: [Product]) {
+        DispatchQueue.main.async { [weak self] in
+            let viewModel = ProductListViewModel(products: result, requestManager: RequestManager.self)
+            let controller = ProductListViewController(viewModel: viewModel)
+
+            self?.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

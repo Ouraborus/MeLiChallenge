@@ -12,4 +12,5 @@ protocol RequestManagerRepository {
 
     static func getProducts(basedOn: String, completion: @escaping Response)
     static func getSites(completion: @escaping Response)
+    static func downloadImage(url: String, completion: @escaping Response)
 }
