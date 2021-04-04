@@ -10,6 +10,7 @@ import UIKit
 
 protocol ProductListViewControllerDelegate where Self: UIViewController {
     func reloadData()
+    func navigateTo(_ product: Product)
 }
 
 class ProductListViewModel: NSObject {
@@ -23,7 +24,7 @@ class ProductListViewModel: NSObject {
     }
 
     func loadImage(url: String, completion: @escaping (Result<UIImage, ServiceError>) -> Void)  {
-        searcher.requestManager.downloadImage(url: url) { result in
+        searcher.requestManager.request(type: .image(url)) { result in
             switch result {
             case .success(let data):
                 guard let image = UIImage(data: data, scale: 80) else {
@@ -40,6 +41,28 @@ class ProductListViewModel: NSObject {
 
     func viewDidLoad() {
         delegate?.reloadData()
+    }
+
+    func didTapSearchButton(query: String) {
+        searcher.search(query) { result in
+            switch result {
+            case .success(let products):
+                self.products = products
+                self.delegate?.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+}
+
+extension ProductListViewModel: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else {
+            return
+        }
+
+        didTapSearchButton(query: query)
     }
 }
 
@@ -70,5 +93,11 @@ extension ProductListViewModel: UITableViewDataSource {
         })
 
         return cell
+    }
+}
+
+extension ProductListViewModel: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.navigateTo(self.products[indexPath.row])
     }
 }

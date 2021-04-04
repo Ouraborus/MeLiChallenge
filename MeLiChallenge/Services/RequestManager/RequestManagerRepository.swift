@@ -10,7 +10,7 @@ import Foundation
 protocol RequestManagerRepository {
     typealias Response = (Result<Data, ServiceError>) -> Void
 
-    static func getProducts(basedOn: String, completion: @escaping Response)
-    static func getSites(completion: @escaping Response)
-    static func downloadImage(url: String, completion: @escaping Response)
+    static func request(type: RequestType, completion: @escaping Response)
+    static func setSite(siteId: String?)
+    static func getSelectedSite() -> String
 }

@@ -13,6 +13,4 @@ struct Product: Codable {
     let price: Double
     let permalink: String
     let thumbnail: String
-
-    // let attributes: [Attribute]? (Necesarios en ProductDetail) https://api.mercadolibre.com/items/MCO613589680
 }

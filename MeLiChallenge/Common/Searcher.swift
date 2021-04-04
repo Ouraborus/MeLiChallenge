@@ -15,7 +15,7 @@ struct Searcher {
     }
 
     func search(_ query: String, completion: @escaping (Result<[Product], ServiceError>) -> Void) {
-        requestManager.getProducts(basedOn: query) { result in
+        requestManager.request(type: .products(query)) { result in
             switch result {
             case .success(let data):
                 guard let result = try? JSONDecoder().decode(SearchResult.self, from: data) else {
@@ -31,7 +31,7 @@ struct Searcher {
     }
 
     func fetchSites(completion: @escaping (Result<[Site], ServiceError>) -> Void) {
-        requestManager.getSites { result in
+        requestManager.request(type: .sites) { result in
             switch result {
             case .success(let data):
                 guard let result = try? JSONDecoder().decode([Site].self, from: data) else {

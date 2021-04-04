@@ -88,7 +88,7 @@ extension SearchViewController: SearchViewDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.sitePickerView.reloadAllComponents()
 
-            guard let lastSelectedSiteId = UserDefaults.standard.value(forKey: "site.selected") as? String else {
+            guard let lastSelectedSiteId = self?.viewModel.selectedSite else {
                 return
             }
 

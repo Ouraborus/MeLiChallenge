@@ -21,6 +21,7 @@ class ProductListViewController: UIViewController {
     private lazy var productListTableView: UITableView = {
         let productList = UITableView()
         productList.dataSource = viewModel
+        productList.delegate = viewModel
         productList.translatesAutoresizingMaskIntoConstraints = false
         productList.rowHeight = UITableView.automaticDimension
         productList.register(ProductListTableViewCell.self, forCellReuseIdentifier: ProductListTableViewCell.reuseIdentifier)
@@ -39,6 +40,7 @@ class ProductListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
+        searchBarView.delegate = viewModel
         setupView()
         //viewModel.viewDidLoad()
     }
@@ -64,6 +66,16 @@ extension ProductListViewController: ProductListViewControllerDelegate {
     func reloadData() {
         DispatchQueue.main.async { [weak self] in
             self?.productListTableView.reloadData()
+        }
+    }
+
+    func navigateTo(_ product: Product) {
+        DispatchQueue.main.async { [weak self] in
+            
+//            let viewModel = ProductListViewModel(products: result, requestManager: RequestManager.self)
+//            let controller = ProductListViewController(viewModel: viewModel)
+//
+//            self?.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

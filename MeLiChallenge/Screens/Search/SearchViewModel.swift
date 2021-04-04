@@ -19,6 +19,16 @@ class SearchViewModel: NSObject {
     private(set) var sites: [Site]?
     weak var delegate: SearchViewDelegate?
 
+    private(set) var selectedSite: String? {
+        get {
+            return searcher.requestManager.getSelectedSite()
+        }
+
+        set {
+            searcher.requestManager.setSite(siteId: newValue)
+        }
+    }
+
     init(requestManager: RequestManagerRepository.Type) {
         self.searcher = Searcher(requestManager: requestManager)
     }
@@ -63,7 +73,7 @@ extension SearchViewModel: UISearchBarDelegate {
 
 extension SearchViewModel: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        UserDefaults.standard.setValue(sites?[row].id, forKey: "site.selected")
+        selectedSite = sites?[row].id
     }
 
 }
