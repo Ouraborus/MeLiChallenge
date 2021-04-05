@@ -42,20 +42,14 @@ class ProductListViewController: UIViewController {
         viewModel.delegate = self
         searchBarView.delegate = viewModel
         setupView()
-        //viewModel.viewDidLoad()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         viewModel.viewDidLoad()
     }
 
     private func setupView() {
-        view.backgroundColor = UIColor(red: 0.99, green: 0.86, blue: 0.23, alpha: 1.00)
         navigationItem.titleView = searchBarView
         view.addSubview(productListTableView)
 
-        productListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+        productListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         productListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         productListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         productListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -69,13 +63,12 @@ extension ProductListViewController: ProductListViewControllerDelegate {
         }
     }
 
-    func navigateTo(_ product: Product) {
+    func navigateTo(_ product: ProductDetail) {
         DispatchQueue.main.async { [weak self] in
-            
-//            let viewModel = ProductListViewModel(products: result, requestManager: RequestManager.self)
-//            let controller = ProductListViewController(viewModel: viewModel)
-//
-//            self?.navigationController?.pushViewController(controller, animated: true)
+            let viewModel = ProductDetailViewModel(productDetail: product, requestManager: RequestManager.self)
+            let controller = ProductDetailViewController(viewModel: viewModel)
+
+            self?.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

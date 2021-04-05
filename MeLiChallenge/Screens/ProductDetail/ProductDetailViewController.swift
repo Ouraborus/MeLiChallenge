@@ -8,22 +8,102 @@
 import UIKit
 
 class ProductDetailViewController: UIViewController {
+    private let viewModel: ProductDetailViewModel
+
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+
+    private lazy var carouselLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        return layout
+    }()
+
+    private lazy var productPicturesCarousel: UICollectionView = {
+        let carousel = UICollectionView(frame: .zero, collectionViewLayout: carouselLayout)
+        carousel.translatesAutoresizingMaskIntoConstraints = false
+        carousel.dataSource = viewModel
+        carousel.delegate = viewModel
+        carousel.showsVerticalScrollIndicator = false
+        carousel.isPagingEnabled = true
+        carousel.register(ProductPictureCollectionViewCell.self, forCellWithReuseIdentifier: ProductPictureCollectionViewCell.reuseIdentifier)
+        return carousel
+    }()
+
+    private lazy var containerView: UIView = {
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = .white
+        return containerView
+    }()
+
+    private lazy var productDetailView: ProductDetailView = {
+        let detailView = ProductDetailView()
+        detailView.translatesAutoresizingMaskIntoConstraints = false
+        detailView.setupView(attributes: viewModel.productDetail.attributes)
+        return detailView
+    }()
+
+    init(viewModel: ProductDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        viewModel.delegate = self
+        viewModel.viewDidLoad()
+        setupView()
     }
-    
 
-    /*
-    // MARK: - Navigation
+    private func setupView() {
+        containerView.addSubview(productPicturesCarousel)
+        containerView.addSubview(productDetailView)
+        scrollView.addSubview(containerView)
+        view.addSubview(scrollView)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        scrollView.backgroundColor = .white
+        view.backgroundColor = .white
+
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+
+
+        containerView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        containerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+
+        productPicturesCarousel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        productPicturesCarousel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        productPicturesCarousel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+        productPicturesCarousel.heightAnchor.constraint(equalToConstant: 250).isActive = true
+
+        productDetailView.topAnchor.constraint(equalTo: productPicturesCarousel.bottomAnchor, constant: 20).isActive = true
+        productDetailView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15).isActive = true
+        productDetailView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15).isActive = true
+        productDetailView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        view.layoutSubviews()
     }
-    */
+}
 
+extension ProductDetailViewController: ProductDetailViewControllerDelegate {
+    func reloadData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.productPicturesCarousel.reloadData()
+        }
+    }
 }

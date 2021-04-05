@@ -38,11 +38,11 @@ class SearchViewModel: NSObject {
     }
 
     func loadSites() {
-        searcher.fetchSites() { [self] result in
+        searcher.fetchSites() { [weak self] result in
             switch result {
             case .success(let sites):
-                self.sites = sites.sorted { $0.name < $1.name }
-                self.delegate?.reload()
+                self?.sites = sites.sorted { $0.name < $1.name }
+                self?.delegate?.reload()
             case .failure(let error):
                 print(error)
             }
@@ -50,10 +50,10 @@ class SearchViewModel: NSObject {
     }
 
     func didTapSearchButton(query: String) {
-        searcher.search(query) { result in
+        searcher.search(query) { [weak self] result in
             switch result {
             case .success(let products):
-                self.delegate?.userTappedSearch(products)
+                self?.delegate?.userTappedSearch(products)
             case .failure(let error):
                 print(error)
             }

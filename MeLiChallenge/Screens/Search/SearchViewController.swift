@@ -59,7 +59,10 @@ class SearchViewController: UIViewController {
     }
 
     private func setupView() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        //navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.backgroundColor = Constants.backgroundColor
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = Constants.backgroundColor
         navigationController?.navigationBar.shadowImage = UIImage()
         view.backgroundColor = Constants.backgroundColor
         searchBarView.setupView()

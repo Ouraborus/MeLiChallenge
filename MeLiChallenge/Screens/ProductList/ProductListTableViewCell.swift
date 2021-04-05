@@ -27,11 +27,10 @@ class ProductListTableViewCell: UITableViewCell {
     private lazy var thumbnail: UIImageView = {
         let thumbnail = UIImageView()
         thumbnail.translatesAutoresizingMaskIntoConstraints = false
-        //thumbnail.contentMode = .scaleAspectFill
         return thumbnail
     }()
 
-    func setupView(title: String, price: String, thumbnail: UIImage) {
+    func setupView(title: String, price: String, thumbnail: UIImage?) {
         self.thumbnail.image = thumbnail
         self.title.text = title
         self.price.text = price
@@ -53,5 +52,11 @@ class ProductListTableViewCell: UITableViewCell {
 
         self.price.leadingAnchor.constraint(equalTo: self.title.leadingAnchor).isActive = true
         self.price.trailingAnchor.constraint(lessThanOrEqualTo: self.title.trailingAnchor).isActive = true
+    }
+
+    override func prepareForReuse() {
+        self.thumbnail.image = nil
+        self.title.text = nil
+        self.price.text = nil
     }
 }

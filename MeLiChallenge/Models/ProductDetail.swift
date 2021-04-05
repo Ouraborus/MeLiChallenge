@@ -14,9 +14,10 @@ struct ProductDetail: Codable {
     let price: Double
     let currencyId: String
     let pictures: [Picture]
+    let attributes: [Attribute]
 
     enum CodingKeys: String, CodingKey {
-        case id, title, price, pictures
+        case id, title, price, pictures, attributes
         case currencyId = "currency_id"
     }
 }

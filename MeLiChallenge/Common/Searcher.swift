@@ -45,4 +45,20 @@ struct Searcher {
             }
         }
     }
+
+    func getProductDetail(productId: String, completion: @escaping (Result<ProductDetail, ServiceError>) -> Void) {
+        requestManager.request(type: .productDetail(productId)) { result in
+            switch result {
+            case .success(let data):
+                guard let productDetail = try? JSONDecoder().decode(ProductDetail.self, from: data) else {
+                    return
+                }
+
+                completion(.success(productDetail))
+            case .failure(let error):
+                completion(.failure(error))
+                break
+            }
+        }
+    }
 }
