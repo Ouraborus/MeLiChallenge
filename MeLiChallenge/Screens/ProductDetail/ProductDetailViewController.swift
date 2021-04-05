@@ -8,6 +8,14 @@
 import UIKit
 
 class ProductDetailViewController: UIViewController {
+
+    private struct Constants {
+        static let productPicturesCarouselHeight: CGFloat = 250
+        static let productDetailViewTopAnchor: CGFloat = 20
+        static let productDetailViewLeadingAnchor: CGFloat = 15
+        static let productDetailViewTrailingAnchor: CGFloat = -15
+    }
+
     private let viewModel: ProductDetailViewModel
 
     private lazy var scrollView: UIScrollView = {
@@ -90,13 +98,12 @@ class ProductDetailViewController: UIViewController {
         productPicturesCarousel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         productPicturesCarousel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         productPicturesCarousel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        productPicturesCarousel.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        productPicturesCarousel.heightAnchor.constraint(equalToConstant: Constants.productPicturesCarouselHeight).isActive = true
 
-        productDetailView.topAnchor.constraint(equalTo: productPicturesCarousel.bottomAnchor, constant: 20).isActive = true
-        productDetailView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15).isActive = true
-        productDetailView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15).isActive = true
+        productDetailView.topAnchor.constraint(equalTo: productPicturesCarousel.bottomAnchor, constant: Constants.productDetailViewTopAnchor).isActive = true
+        productDetailView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: Constants.productDetailViewLeadingAnchor).isActive = true
+        productDetailView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: Constants.productDetailViewTrailingAnchor).isActive = true
         productDetailView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        view.layoutSubviews()
     }
 }
 

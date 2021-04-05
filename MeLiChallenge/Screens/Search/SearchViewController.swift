@@ -18,6 +18,8 @@ class SearchViewController: UIViewController {
         static let headerLabelBottomAnchor: CGFloat = -20
         static let searchBarLeading: CGFloat = 5
         static let searchBarTrailing: CGFloat = -5
+        static let pickerViewTopAnchor: CGFloat = 20
+        static let pickerViewBottomAnchor: CGFloat = -20
         static let backgroundColor = UIColor(red: 0.99, green: 0.86, blue: 0.23, alpha: 1.00)
     }
 
@@ -80,9 +82,9 @@ class SearchViewController: UIViewController {
         searchBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         searchBarView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 
-        sitePickerView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: 20).isActive = true
+        sitePickerView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: Constants.pickerViewTopAnchor).isActive = true
         sitePickerView.centerXAnchor.constraint(equalTo: searchBarView.centerXAnchor).isActive = true
-        sitePickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        sitePickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.pickerViewBottomAnchor).isActive = true
     }
 }
 

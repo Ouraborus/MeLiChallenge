@@ -8,12 +8,24 @@
 import UIKit
 
 class ProductListTableViewCell: UITableViewCell {
+
+    private struct Constants {
+        static let thumbnailSize: CGFloat = 80
+        static let thumbnailTopAnchor: CGFloat = 20
+        static let thumbnailLeadingAnchor: CGFloat = 20
+        static let thumbnailBottomAnchor: CGFloat = -20
+        static let titleLeadingAnchor: CGFloat = 20
+        static let titleTrailingAnchor: CGFloat = -20
+        static let titleBottomAnchor: CGFloat = -20
+        static let titleNumberOfLines: Int = 2
+    }
+
     static let reuseIdentifier = String(describing: ProductListTableViewCell.self)
 
     private lazy var title: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.numberOfLines = 2
+        title.numberOfLines = Constants.titleNumberOfLines
         return title
     }()
 
@@ -39,16 +51,16 @@ class ProductListTableViewCell: UITableViewCell {
         contentView.addSubview(self.title)
         contentView.addSubview(self.price)
 
-        self.thumbnail.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        self.thumbnail.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        self.thumbnail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
-        self.thumbnail.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        self.thumbnail.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        self.thumbnail.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.thumbnailTopAnchor).isActive = true
+        self.thumbnail.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.thumbnailLeadingAnchor).isActive = true
+        self.thumbnail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.thumbnailBottomAnchor).isActive = true
+        self.thumbnail.heightAnchor.constraint(equalToConstant: Constants.thumbnailSize).isActive = true
+        self.thumbnail.widthAnchor.constraint(equalToConstant: Constants.thumbnailSize).isActive = true
 
         self.title.topAnchor.constraint(equalTo: self.thumbnail.topAnchor).isActive = true
-        self.title.leadingAnchor.constraint(equalTo: self.thumbnail.trailingAnchor, constant: 20).isActive = true
-        self.title.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20).isActive = true
-        self.title.bottomAnchor.constraint(equalTo: self.price.topAnchor, constant: -20).isActive = true
+        self.title.leadingAnchor.constraint(equalTo: self.thumbnail.trailingAnchor, constant: Constants.titleLeadingAnchor).isActive = true
+        self.title.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: Constants.titleTrailingAnchor).isActive = true
+        self.title.bottomAnchor.constraint(equalTo: self.price.topAnchor, constant: Constants.titleBottomAnchor).isActive = true
 
         self.price.leadingAnchor.constraint(equalTo: self.title.leadingAnchor).isActive = true
         self.price.trailingAnchor.constraint(lessThanOrEqualTo: self.title.trailingAnchor).isActive = true

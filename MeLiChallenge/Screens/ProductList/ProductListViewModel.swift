@@ -29,7 +29,7 @@ class ProductListViewModel: NSObject {
             searcher.requestManager.request(type: .image(product.thumbnail)) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    guard let image = UIImage(data: data, scale: 80) else {
+                    guard let image = UIImage(data: data) else {
                         return
                     }
 

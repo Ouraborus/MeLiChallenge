@@ -9,6 +9,12 @@ import UIKit
 
 class ProductDetailView: UIStackView {
 
+    private struct Constants {
+        static let attributeTopAnchor: CGFloat = 5
+        static let attributeLeadingAnchor: CGFloat = 5
+        static let attributeTrailingAnchor: CGFloat = -5
+    }
+
     func setupView(attributes: [Attribute]) {
         translatesAutoresizingMaskIntoConstraints = false
         axis = .vertical
@@ -30,8 +36,6 @@ class ProductDetailView: UIStackView {
 
         attributeName.text = attribute.name
         attributeValue.text = attribute.valueName
-        attributeName.textColor = .black
-        attributeValue.textColor = .black
 
         attributeView.addSubview(attributeName)
         attributeView.addSubview(attributeValue)
@@ -40,15 +44,14 @@ class ProductDetailView: UIStackView {
         attributeValue.translatesAutoresizingMaskIntoConstraints = false
         attributeView.translatesAutoresizingMaskIntoConstraints = false
 
-        attributeName.topAnchor.constraint(equalTo: attributeView.topAnchor, constant: 5).isActive = true
-        attributeName.leadingAnchor.constraint(equalTo: attributeView.leadingAnchor, constant: 5).isActive = true
-        attributeName.trailingAnchor.constraint(equalTo: attributeView.trailingAnchor, constant: -5).isActive = true
+        attributeName.topAnchor.constraint(equalTo: attributeView.topAnchor, constant: Constants.attributeTopAnchor).isActive = true
+        attributeName.leadingAnchor.constraint(equalTo: attributeView.leadingAnchor, constant: Constants.attributeLeadingAnchor).isActive = true
+        attributeName.trailingAnchor.constraint(equalTo: attributeView.trailingAnchor, constant: Constants.attributeTrailingAnchor).isActive = true
 
-        attributeValue.topAnchor.constraint(equalTo: attributeName.bottomAnchor, constant: 5).isActive = true
-        attributeValue.leadingAnchor.constraint(equalTo: attributeName.leadingAnchor, constant: 5).isActive = true
-        attributeValue.trailingAnchor.constraint(equalTo: attributeName.trailingAnchor, constant: 5).isActive = true
-        attributeValue.bottomAnchor.constraint(equalTo: attributeView.bottomAnchor, constant: -5).isActive = true
+        attributeValue.topAnchor.constraint(equalTo: attributeName.bottomAnchor, constant: Constants.attributeTopAnchor).isActive = true
+        attributeValue.leadingAnchor.constraint(equalTo: attributeName.leadingAnchor, constant: Constants.attributeLeadingAnchor).isActive = true
+        attributeValue.trailingAnchor.constraint(equalTo: attributeName.trailingAnchor).isActive = true
+        attributeValue.bottomAnchor.constraint(equalTo: attributeView.bottomAnchor, constant: Constants.attributeTrailingAnchor).isActive = true
         return attributeView
     }
-
 }

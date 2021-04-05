@@ -13,6 +13,10 @@ protocol ProductDetailViewControllerDelegate where Self: UIViewController {
 }
 
 class ProductDetailViewModel: NSObject {
+    private struct Constants {
+        static let collectionViewItemHeight: CGFloat = 250
+    }
+
     private(set) var productDetail: ProductDetail
     private var productDetailImages: [String: UIImage] = [:]
     private var requestManager: RequestManagerRepository.Type
@@ -60,6 +64,6 @@ extension ProductDetailViewModel: UICollectionViewDataSource {
 
 extension ProductDetailViewModel: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: delegate?.view.frame.width ?? 0, height: 250)
+        return CGSize(width: delegate?.view.frame.width ?? 0, height: Constants.collectionViewItemHeight)
     }
 }
