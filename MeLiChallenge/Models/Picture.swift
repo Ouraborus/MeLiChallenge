@@ -10,9 +10,14 @@ import Foundation
 struct Picture: Codable {
     let id: String
     let url: String
+    var pictureData: Data?
 
     enum CodingKeys: String, CodingKey {
         case id
         case url = "secure_url"
+    }
+
+    mutating func setPicture(data: Data?) {
+        pictureData = data
     }
 }

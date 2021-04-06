@@ -18,7 +18,6 @@ class ProductDetailViewModel: NSObject {
     }
 
     private(set) var productDetail: ProductDetail
-    private var productDetailImages: [String: UIImage] = [:]
     private var requestManager: RequestManagerRepository.Type
     weak var delegate: ProductDetailViewControllerDelegate?
 
@@ -32,11 +31,11 @@ class ProductDetailViewModel: NSObject {
     }
 
     private func loadImages() {
-        productDetail.pictures.forEach { picture in
+        productDetail.pictures.enumerated().forEach { index, picture in
             requestManager.request(type: .image(picture.url)) { [weak self] result in
                 switch result {
-                case .success(let image):
-                    self?.productDetailImages[picture.id] = UIImage(data: image)
+                case .success(let data):
+                    self?.productDetail.pictures[index].setPicture(data: data)
                     self?.delegate?.reloadData()
                 case .failure(let error):
                     print(error)
@@ -56,8 +55,7 @@ extension ProductDetailViewModel: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let pictureId = productDetail.pictures[indexPath.row].id
-        cell.setupView(picture: productDetailImages[pictureId])
+        cell.setupView(picture: UIImage(data: productDetail.pictures[indexPath.row].pictureData ?? Data()))
         return cell
     }
 }

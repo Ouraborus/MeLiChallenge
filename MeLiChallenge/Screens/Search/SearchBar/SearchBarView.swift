@@ -26,10 +26,5 @@ class SearchBarView: UISearchBar {
         leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        searchTextField.layer.shadowColor = Constants.searchBarShadowColor
-        searchTextField.layer.shadowOpacity = Constants.searchBarShadowOpacity
-        searchTextField.layer.shadowOffset = Constants.searchBarShadowOffset
-        searchTextField.layer.shadowRadius = Constants.searchBarShadowRadius
-        searchTextField.layer.shouldRasterize = true
     }
 }

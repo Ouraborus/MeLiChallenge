@@ -13,4 +13,9 @@ struct Product: Codable {
     let price: Double
     let permalink: String
     let thumbnail: String
+    var imageData: Data?
+
+    mutating func setImage(data: Data?) {
+        imageData = data
+    }
 }

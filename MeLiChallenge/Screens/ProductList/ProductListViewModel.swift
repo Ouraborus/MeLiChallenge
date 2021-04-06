@@ -15,7 +15,6 @@ protocol ProductListViewControllerDelegate where Self: UIViewController {
 
 class ProductListViewModel: NSObject {
     private(set) var products: [Product]
-    private var productImages: [String: UIImage] = [:]
     private let searcher: Searcher
     weak var delegate: ProductListViewControllerDelegate?
 
@@ -25,15 +24,11 @@ class ProductListViewModel: NSObject {
     }
 
     func loadImages() {
-        products.forEach { product in
+        products.enumerated().forEach { index, product in
             searcher.requestManager.request(type: .image(product.thumbnail)) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    guard let image = UIImage(data: data) else {
-                        return
-                    }
-
-                    self?.productImages[product.id] = image
+                    self?.products[index].setImage(data: data)
                     self?.delegate?.reloadData()
                 case .failure(let error):
                     print(error)
@@ -51,6 +46,7 @@ class ProductListViewModel: NSObject {
             switch result {
             case .success(let products):
                 self.products = products
+                self.loadImages()
                 self.delegate?.reloadData()
             case .failure(let error):
                 print(error)
@@ -80,7 +76,7 @@ extension ProductListViewModel: UITableViewDataSource {
         }
 
         let product = products[indexPath.row]
-        cell.setupView(title: product.title, price: String(product.price), thumbnail: productImages[product.id])
+        cell.setupView(title: product.title, price: String(product.price), thumbnail: UIImage(data: product.imageData ?? Data()))
         return cell
     }
 }

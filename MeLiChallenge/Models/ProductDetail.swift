@@ -8,12 +8,11 @@
 import Foundation
 
 struct ProductDetail: Codable {
-    //https://api.mercadolibre.com/items/MCO613589680
     let id: String
     let title: String
     let price: Double
     let currencyId: String
-    let pictures: [Picture]
+    var pictures: [Picture]
     let attributes: [Attribute]
 
     enum CodingKeys: String, CodingKey {

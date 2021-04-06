@@ -13,11 +13,10 @@ class ProductListTableViewCell: UITableViewCell {
         static let thumbnailSize: CGFloat = 80
         static let thumbnailTopAnchor: CGFloat = 20
         static let thumbnailLeadingAnchor: CGFloat = 20
-        static let thumbnailBottomAnchor: CGFloat = -20
-        static let titleLeadingAnchor: CGFloat = 20
-        static let titleTrailingAnchor: CGFloat = -20
-        static let titleBottomAnchor: CGFloat = -20
-        static let titleNumberOfLines: Int = 2
+        static let stackLeadingAnchor: CGFloat = 20
+        static let stackTrailingAnchor: CGFloat = -20
+        static let stackBottomAnchor: CGFloat = -20
+        static let stackSpacing: CGFloat = 20
     }
 
     static let reuseIdentifier = String(describing: ProductListTableViewCell.self)
@@ -25,7 +24,7 @@ class ProductListTableViewCell: UITableViewCell {
     private lazy var title: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.numberOfLines = Constants.titleNumberOfLines
+        title.numberOfLines = 0
         return title
     }()
 
@@ -38,8 +37,21 @@ class ProductListTableViewCell: UITableViewCell {
 
     private lazy var thumbnail: UIImageView = {
         let thumbnail = UIImageView()
+        thumbnail.contentMode = .scaleAspectFit
         thumbnail.translatesAutoresizingMaskIntoConstraints = false
         return thumbnail
+    }()
+
+    private lazy var productPreviewStack: UIStackView = {
+        let productPreviewDetail = UIStackView()
+        productPreviewDetail.translatesAutoresizingMaskIntoConstraints = false
+        productPreviewDetail.axis = .vertical
+        productPreviewDetail.alignment = .fill
+        productPreviewDetail.distribution = .fillProportionally
+        productPreviewDetail.spacing = Constants.stackSpacing
+        productPreviewDetail.addArrangedSubview(self.title)
+        productPreviewDetail.addArrangedSubview(self.price)
+        return productPreviewDetail
     }()
 
     func setupView(title: String, price: String, thumbnail: UIImage?) {
@@ -48,22 +60,17 @@ class ProductListTableViewCell: UITableViewCell {
         self.price.text = price
 
         contentView.addSubview(self.thumbnail)
-        contentView.addSubview(self.title)
-        contentView.addSubview(self.price)
+        contentView.addSubview(productPreviewStack)
 
         self.thumbnail.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.thumbnailTopAnchor).isActive = true
         self.thumbnail.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.thumbnailLeadingAnchor).isActive = true
-        self.thumbnail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.thumbnailBottomAnchor).isActive = true
         self.thumbnail.heightAnchor.constraint(equalToConstant: Constants.thumbnailSize).isActive = true
         self.thumbnail.widthAnchor.constraint(equalToConstant: Constants.thumbnailSize).isActive = true
 
-        self.title.topAnchor.constraint(equalTo: self.thumbnail.topAnchor).isActive = true
-        self.title.leadingAnchor.constraint(equalTo: self.thumbnail.trailingAnchor, constant: Constants.titleLeadingAnchor).isActive = true
-        self.title.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: Constants.titleTrailingAnchor).isActive = true
-        self.title.bottomAnchor.constraint(equalTo: self.price.topAnchor, constant: Constants.titleBottomAnchor).isActive = true
-
-        self.price.leadingAnchor.constraint(equalTo: self.title.leadingAnchor).isActive = true
-        self.price.trailingAnchor.constraint(lessThanOrEqualTo: self.title.trailingAnchor).isActive = true
+        productPreviewStack.topAnchor.constraint(equalTo: self.thumbnail.topAnchor).isActive = true
+        productPreviewStack.leadingAnchor.constraint(equalTo: self.thumbnail.trailingAnchor, constant: Constants.stackLeadingAnchor).isActive = true
+        productPreviewStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.stackTrailingAnchor).isActive = true
+        productPreviewStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.stackBottomAnchor).isActive = true
     }
 
     override func prepareForReuse() {
