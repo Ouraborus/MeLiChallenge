@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RequestType {
+enum RequestType: Equatable {
     case products(String)
     case productDetail(String)
     case sites

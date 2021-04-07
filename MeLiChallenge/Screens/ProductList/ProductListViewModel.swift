@@ -18,12 +18,12 @@ class ProductListViewModel: NSObject {
     private let searcher: Searcher
     weak var delegate: ProductListViewControllerDelegate?
 
-    init(products: [Product], requestManager: RequestManagerRepository.Type) {
-        self.products = products
+    init(model: SearchResult, requestManager: RequestManagerRepository.Type) {
+        self.products = model.products
         self.searcher = Searcher(requestManager: requestManager)
     }
 
-    func loadImages() {
+    private func loadImages() {
         products.enumerated().forEach { index, product in
             searcher.requestManager.request(type: .image(product.thumbnail)) { [weak self] result in
                 switch result {
@@ -41,11 +41,11 @@ class ProductListViewModel: NSObject {
         loadImages()
     }
 
-    func didTapSearchButton(query: String) {
+    private func didTapSearchButton(query: String) {
         searcher.search(query) { result in
             switch result {
-            case .success(let products):
-                self.products = products
+            case .success(let searchResult):
+                self.products = searchResult.products
                 self.loadImages()
                 self.delegate?.reloadData()
             case .failure(let error):

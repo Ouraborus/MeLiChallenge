@@ -10,7 +10,7 @@ import UIKit
 
 protocol SearchViewDelegate where Self: UIViewController {
     func reload()
-    func userTappedSearch(_ result: [Product])
+    func userTappedSearch(_ result: SearchResult)
 }
 
 class SearchViewModel: NSObject {
@@ -37,7 +37,7 @@ class SearchViewModel: NSObject {
         loadSites()
     }
 
-    func loadSites() {
+    private func loadSites() {
         searcher.fetchSites() { [weak self] result in
             switch result {
             case .success(let sites):
@@ -49,11 +49,11 @@ class SearchViewModel: NSObject {
         }
     }
 
-    func didTapSearchButton(query: String) {
+    private func didTapSearchButton(query: String) {
         searcher.search(query) { [weak self] result in
             switch result {
-            case .success(let products):
-                self?.delegate?.userTappedSearch(products)
+            case .success(let searchResult):
+                self?.delegate?.userTappedSearch(searchResult)
             case .failure(let error):
                 print(error)
             }

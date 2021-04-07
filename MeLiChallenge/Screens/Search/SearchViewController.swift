@@ -101,9 +101,9 @@ extension SearchViewController: SearchViewDelegate {
         }
     }
 
-    func userTappedSearch(_ result: [Product]) {
+    func userTappedSearch(_ result: SearchResult) {
         DispatchQueue.main.async { [weak self] in
-            let viewModel = ProductListViewModel(products: result, requestManager: RequestManager.self)
+            let viewModel = ProductListViewModel(model: result, requestManager: RequestManager.self)
             let controller = ProductListViewController(viewModel: viewModel)
 
             self?.navigationController?.pushViewController(controller, animated: true)
