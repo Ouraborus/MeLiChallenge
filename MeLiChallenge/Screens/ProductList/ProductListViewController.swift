@@ -28,6 +28,13 @@ class ProductListViewController: UIViewController {
         return productList
     }()
 
+    private lazy var productListEmptyView: ProductListEmptyView = {
+        let emptyView = ProductListEmptyView()
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        emptyView.backgroundColor = .white
+        return emptyView
+    }()
+
     init(viewModel: ProductListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -48,11 +55,23 @@ class ProductListViewController: UIViewController {
     private func setupView() {
         navigationItem.titleView = searchBarView
         view.addSubview(productListTableView)
+        setupProductListTableView()
+    }
 
+    private func setupProductListTableView() {
         productListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         productListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         productListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         productListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+
+    private func setupEmptyView() {
+        productListEmptyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        productListEmptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        productListEmptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        productListEmptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        productListEmptyView.setupView()
     }
 }
 
@@ -69,6 +88,24 @@ extension ProductListViewController: ProductListDelegate {
             let controller = ProductDetailViewController(viewModel: viewModel)
 
             self?.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+
+    func toggleEmptyView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+
+            if self.viewModel.products.isEmpty {
+                self.productListTableView.removeFromSuperview()
+                self.view.addSubview(self.productListEmptyView)
+                self.setupEmptyView()
+            } else {
+                self.view.addSubview(self.productListTableView)
+                self.setupProductListTableView()
+                self.productListEmptyView.removeFromSuperview()
+            }
         }
     }
 }

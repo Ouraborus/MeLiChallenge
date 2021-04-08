@@ -11,4 +11,5 @@ import UIKit
 protocol ProductListDelegate where Self: UIViewController {
     func reloadData()
     func navigateTo(_ product: ProductDetail)
+    func toggleEmptyView()
 }

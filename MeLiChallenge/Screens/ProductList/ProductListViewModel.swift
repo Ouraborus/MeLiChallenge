@@ -6,9 +6,15 @@
 //
 
 import Foundation
+import os
 
 class ProductListViewModel: NSObject {
-    private(set) var products: [Product]
+    private(set) var products: [Product] {
+        didSet {
+            delegate?.toggleEmptyView()
+        }
+    }
+
     let searcher: Searcher
     weak var delegate: ProductListDelegate?
 
@@ -32,6 +38,7 @@ class ProductListViewModel: NSObject {
 
     func viewDidLoad() {
         loadImages()
+        delegate?.toggleEmptyView()
     }
 
     private func loadImages() {
