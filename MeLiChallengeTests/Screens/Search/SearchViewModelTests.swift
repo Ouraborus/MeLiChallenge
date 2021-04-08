@@ -10,6 +10,7 @@ import XCTest
 
 class SearchViewModelTests: XCTestCase {
     let requestManager = RequestManagerMock.self
+    lazy var searchViewModel = SearchViewModel(requestManager: requestManager)
 
     override func tearDown() {
         requestManager.resetMock()
@@ -18,7 +19,6 @@ class SearchViewModelTests: XCTestCase {
     func testSearchBarViewModelViewDidLoadShouldRequestSites() {
         // Given
         requestManager.expectedResult = .SitesMock
-        let searchViewModel = SearchViewModel(requestManager: requestManager)
 
         // When
         searchViewModel.viewDidLoad()
@@ -36,7 +36,6 @@ class SearchViewModelTests: XCTestCase {
         // Given
         requestManager.expectedResult = .SitesMock
         let expectedNumberOfSites = 19
-        let searchViewModel = SearchViewModel(requestManager: requestManager)
 
         // When
         searchViewModel.viewDidLoad()

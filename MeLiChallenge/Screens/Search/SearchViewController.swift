@@ -30,7 +30,6 @@ class SearchViewController: UIViewController {
         headerLabel.numberOfLines = 0
         headerLabel.textAlignment = .center
         let attribute = [ NSAttributedString.Key.font: Constants.headerLabelFont ]
-
         let attributedString = NSAttributedString(string: Constants.headerLabelCopy, attributes: attribute)
 
         headerLabel.attributedText = attributedString
@@ -61,26 +60,40 @@ class SearchViewController: UIViewController {
     }
 
     private func setupView() {
-        navigationController?.navigationBar.backgroundColor = Constants.backgroundColor
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = Constants.backgroundColor
-        navigationController?.navigationBar.shadowImage = UIImage()
         view.backgroundColor = Constants.backgroundColor
         searchBarView.setupView()
         view.addSubview(headerLabel)
         view.addSubview(searchBarView)
         view.addSubview(sitePickerView)
 
+        setupNavigationController()
+        setupHeaderLabel()
+        setupSearchBarView()
+        setupSitePickerView()
+    }
+
+    private func setupNavigationController() {
+        navigationController?.navigationBar.backgroundColor = Constants.backgroundColor
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = Constants.backgroundColor
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+
+    private func setupHeaderLabel() {
         headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.headerLabelTopAnchor).isActive = true
         headerLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.headerLabelLeadingAnchor).isActive = true
         headerLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.headerLabelTrailingAnchor).isActive = true
         headerLabel.bottomAnchor.constraint(greaterThanOrEqualTo: searchBarView.topAnchor, constant: Constants.headerLabelBottomAnchor).isActive = true
+    }
 
+    private func setupSearchBarView() {
         searchBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.searchBarLeading).isActive = true
         searchBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.searchBarTrailing).isActive = true
         searchBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         searchBarView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
 
+    private func setupSitePickerView() {
         sitePickerView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: Constants.pickerViewTopAnchor).isActive = true
         sitePickerView.centerXAnchor.constraint(equalTo: searchBarView.centerXAnchor).isActive = true
         sitePickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.pickerViewBottomAnchor).isActive = true

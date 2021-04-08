@@ -22,6 +22,7 @@ class ProductDetailViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.backgroundColor = .white
         return scrollView
     }()
 
@@ -75,31 +76,41 @@ class ProductDetailViewController: UIViewController {
     }
 
     private func setupView() {
+        view.backgroundColor = .white
         containerView.addSubview(productPicturesCarousel)
         containerView.addSubview(productDetailView)
         scrollView.addSubview(containerView)
         view.addSubview(scrollView)
 
-        scrollView.backgroundColor = .white
-        view.backgroundColor = .white
+        setupContainerView()
+        setupScrollView()
+        setupProductPicturesCarousel()
+        setupProductDetailView()
+    }
 
-        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-
-
+    private func setupContainerView() {
         containerView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         containerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+    }
 
+    private func setupScrollView() {
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+
+    private func setupProductPicturesCarousel() {
         productPicturesCarousel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         productPicturesCarousel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         productPicturesCarousel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
         productPicturesCarousel.heightAnchor.constraint(equalToConstant: Constants.productPicturesCarouselHeight).isActive = true
+    }
 
+    private func setupProductDetailView() {
         productDetailView.topAnchor.constraint(equalTo: productPicturesCarousel.bottomAnchor, constant: Constants.productDetailViewTopAnchor).isActive = true
         productDetailView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: Constants.productDetailViewLeadingAnchor).isActive = true
         productDetailView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: Constants.productDetailViewTrailingAnchor).isActive = true
