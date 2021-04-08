@@ -56,7 +56,7 @@ class ProductListViewController: UIViewController {
     }
 }
 
-extension ProductListViewController: ProductListViewControllerDelegate {
+extension ProductListViewController: ProductListDelegate {
     func reloadData() {
         DispatchQueue.main.async { [weak self] in
             self?.productListTableView.reloadData()

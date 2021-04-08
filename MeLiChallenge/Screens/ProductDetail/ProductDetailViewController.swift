@@ -107,7 +107,7 @@ class ProductDetailViewController: UIViewController {
     }
 }
 
-extension ProductDetailViewController: ProductDetailViewControllerDelegate {
+extension ProductDetailViewController: ProductDetailDelegate {
     func reloadData() {
         DispatchQueue.main.async { [weak self] in
             self?.productPicturesCarousel.reloadData()

@@ -8,14 +8,19 @@
 import Foundation
 @testable import MeLiChallenge
 
-class RequestManagerMock: RequestManagerRepository {
+enum ModelMock: String {
+    case ProductDetailMock
+    case ProductMock
+    case SitesMock
+}
 
+class RequestManagerMock: RequestManagerRepository {
     static var requestWasCalled = false
     static var lastRequestMade: RequestType?
-
+    static var expectedResult: ModelMock?
 
     static func request(type: RequestType, completion: @escaping Response) {
-        guard let data = loadJson(filename: "SitesMock") else {
+        guard let mockName = expectedResult?.rawValue, let data = loadJsonMock(filename: mockName) else {
             completion(.failure(.badData))
             return
         }
@@ -25,7 +30,7 @@ class RequestManagerMock: RequestManagerRepository {
         lastRequestMade = type
         requestWasCalled = true
     }
-
+    
     static func setSite(siteId: String?) {
 
     }
@@ -34,7 +39,13 @@ class RequestManagerMock: RequestManagerRepository {
         return ""
     }
 
-    private static func loadJson(filename fileName: String) -> Data? {
+    static func resetMock() {
+        lastRequestMade = nil
+        requestWasCalled = false
+        expectedResult = nil
+    }
+
+    static func loadJsonMock(filename fileName: String) -> Data? {
         guard let url = Bundle(for: self).path(forResource: fileName, ofType: "json") else {
             return nil
         }

@@ -41,6 +41,14 @@
 		C991FBD6261D5464006AA7F4 /* RequestManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C991FBD5261D5464006AA7F4 /* RequestManagerMock.swift */; };
 		C991FBE5261D652F006AA7F4 /* ProductListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C991FBE4261D652F006AA7F4 /* ProductListViewModelTests.swift */; };
 		C991FBEE261D6F1A006AA7F4 /* ProductDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C991FBED261D6F1A006AA7F4 /* ProductDetailViewModelTests.swift */; };
+		C9DA90F6261E82DA0001085C /* SearchBarViewModel+UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DA90F5261E82DA0001085C /* SearchBarViewModel+UISearchBar.swift */; };
+		C9DA90FB261E83650001085C /* SearchBarViewModel+UIPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DA90FA261E83650001085C /* SearchBarViewModel+UIPicker.swift */; };
+		C9DA9100261E85000001085C /* SearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DA90FF261E85000001085C /* SearchViewDelegate.swift */; };
+		C9DA9105261E85AC0001085C /* ProductListViewModel+UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DA9104261E85AC0001085C /* ProductListViewModel+UISearchBar.swift */; };
+		C9DA910A261E88E70001085C /* ProductListViewModel+UITable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DA9109261E88E70001085C /* ProductListViewModel+UITable.swift */; };
+		C9DA910F261E89150001085C /* ProductListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DA910E261E89150001085C /* ProductListDelegate.swift */; };
+		C9DA9114261E89990001085C /* ProductDetailViewModel+UICollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DA9113261E89990001085C /* ProductDetailViewModel+UICollection.swift */; };
+		C9DA911C261E8BB90001085C /* ProductDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DA911B261E8BB90001085C /* ProductDetailDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +109,14 @@
 		C991FBD5261D5464006AA7F4 /* RequestManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerMock.swift; sourceTree = "<group>"; };
 		C991FBE4261D652F006AA7F4 /* ProductListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModelTests.swift; sourceTree = "<group>"; };
 		C991FBED261D6F1A006AA7F4 /* ProductDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModelTests.swift; sourceTree = "<group>"; };
+		C9DA90F5261E82DA0001085C /* SearchBarViewModel+UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBarViewModel+UISearchBar.swift"; sourceTree = "<group>"; };
+		C9DA90FA261E83650001085C /* SearchBarViewModel+UIPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBarViewModel+UIPicker.swift"; sourceTree = "<group>"; };
+		C9DA90FF261E85000001085C /* SearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewDelegate.swift; sourceTree = "<group>"; };
+		C9DA9104261E85AC0001085C /* ProductListViewModel+UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductListViewModel+UISearchBar.swift"; sourceTree = "<group>"; };
+		C9DA9109261E88E70001085C /* ProductListViewModel+UITable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductListViewModel+UITable.swift"; sourceTree = "<group>"; };
+		C9DA910E261E89150001085C /* ProductListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListDelegate.swift; sourceTree = "<group>"; };
+		C9DA9113261E89990001085C /* ProductDetailViewModel+UICollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductDetailViewModel+UICollection.swift"; sourceTree = "<group>"; };
+		C9DA911B261E8BB90001085C /* ProductDetailDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +151,8 @@
 				C9328E12261942F600223B74 /* ProductDetailViewModel.swift */,
 				C932BF172619674100437DF6 /* ProductDetailView.swift */,
 				C932BF242619694900437DF6 /* ProductPictureCollectionViewCell.swift */,
+				C9DA9113261E89990001085C /* ProductDetailViewModel+UICollection.swift */,
+				C9DA911B261E8BB90001085C /* ProductDetailDelegate.swift */,
 			);
 			path = ProductDetail;
 			sourceTree = "<group>";
@@ -145,6 +163,9 @@
 				C93687DC2617AB0E00B03341 /* ProductListViewController.swift */,
 				C93687E42617AB1C00B03341 /* ProductListViewModel.swift */,
 				C93687E92617BD0900B03341 /* ProductListTableViewCell.swift */,
+				C9DA9104261E85AC0001085C /* ProductListViewModel+UISearchBar.swift */,
+				C9DA9109261E88E70001085C /* ProductListViewModel+UITable.swift */,
+				C9DA910E261E89150001085C /* ProductListDelegate.swift */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -262,6 +283,9 @@
 				C9900A9426166104004A88DA /* SearchBar */,
 				C9900A802616473A004A88DA /* SearchViewModel.swift */,
 				C9900A7B261646E2004A88DA /* SearchViewController.swift */,
+				C9DA90F5261E82DA0001085C /* SearchBarViewModel+UISearchBar.swift */,
+				C9DA90FA261E83650001085C /* SearchBarViewModel+UIPicker.swift */,
+				C9DA90FF261E85000001085C /* SearchViewDelegate.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -474,13 +498,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9DA90F6261E82DA0001085C /* SearchBarViewModel+UISearchBar.swift in Sources */,
 				C932BF252619694900437DF6 /* ProductPictureCollectionViewCell.swift in Sources */,
+				C9DA9105261E85AC0001085C /* ProductListViewModel+UISearchBar.swift in Sources */,
 				C9328E182619431100223B74 /* ProductDetail.swift in Sources */,
+				C9DA9100261E85000001085C /* SearchViewDelegate.swift in Sources */,
+				C9DA911C261E8BB90001085C /* ProductDetailDelegate.swift in Sources */,
 				C9900A812616473A004A88DA /* SearchViewModel.swift in Sources */,
 				C932BF1026195ED200437DF6 /* RequestType.swift in Sources */,
 				C9900A7C261646E2004A88DA /* SearchViewController.swift in Sources */,
 				C93687DD2617AB0E00B03341 /* ProductListViewController.swift in Sources */,
+				C9DA910F261E89150001085C /* ProductListDelegate.swift in Sources */,
 				C9900A8A26164882004A88DA /* Searcher.swift in Sources */,
+				C9DA90FB261E83650001085C /* SearchBarViewModel+UIPicker.swift in Sources */,
 				C9900A5D261535B9004A88DA /* ServiceError.swift in Sources */,
 				C9900A962616612B004A88DA /* SearchBarView.swift in Sources */,
 				C9900A752616305B004A88DA /* SearchResult.swift in Sources */,
@@ -489,6 +519,7 @@
 				C9900A6D26153C33004A88DA /* Product.swift in Sources */,
 				C93687EA2617BD0900B03341 /* ProductListTableViewCell.swift in Sources */,
 				C9328E0E261942E700223B74 /* ProductDetailViewController.swift in Sources */,
+				C9DA910A261E88E70001085C /* ProductListViewModel+UITable.swift in Sources */,
 				C932BF182619674100437DF6 /* ProductDetailView.swift in Sources */,
 				C9900A5C261535B9004A88DA /* ServiceMethod.swift in Sources */,
 				C9900A5E261535B9004A88DA /* RequestManager.swift in Sources */,
@@ -496,6 +527,7 @@
 				C9900A1226153472004A88DA /* AppDelegate.swift in Sources */,
 				C9328E1D261946C700223B74 /* Picture.swift in Sources */,
 				C9900A5F261535B9004A88DA /* RequestManagerRepository.swift in Sources */,
+				C9DA9114261E89990001085C /* ProductDetailViewModel+UICollection.swift in Sources */,
 				C9900A1426153472004A88DA /* SceneDelegate.swift in Sources */,
 				C9328E13261942F600223B74 /* ProductDetailViewModel.swift in Sources */,
 			);

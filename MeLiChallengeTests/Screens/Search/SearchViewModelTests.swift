@@ -12,12 +12,12 @@ class SearchViewModelTests: XCTestCase {
     let requestManager = RequestManagerMock.self
 
     override func tearDown() {
-        requestManager.lastRequestMade = nil
-        requestManager.requestWasCalled = false
+        requestManager.resetMock()
     }
 
     func testSearchBarViewModelViewDidLoadShouldRequestSites() {
         // Given
+        requestManager.expectedResult = .SitesMock
         let searchViewModel = SearchViewModel(requestManager: requestManager)
 
         // When
@@ -34,6 +34,7 @@ class SearchViewModelTests: XCTestCase {
 
     func testSearchBarViewModelViewDidLoadShouldUpdateSites() {
         // Given
+        requestManager.expectedResult = .SitesMock
         let expectedNumberOfSites = 19
         let searchViewModel = SearchViewModel(requestManager: requestManager)
 
@@ -48,5 +49,4 @@ class SearchViewModelTests: XCTestCase {
 
         XCTAssertEqual(sites.count, expectedNumberOfSites, "Sites count didn't match the expected number of sites: \(expectedNumberOfSites)")
     }
-
 }
