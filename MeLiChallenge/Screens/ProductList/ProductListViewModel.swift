@@ -16,22 +16,24 @@ class ProductListViewModel: NSObject {
     }
 
     let searcher: Searcher
+    let logger: LoggerProtocol
     weak var delegate: ProductListDelegate?
 
-    init(model: SearchResult, requestManager: RequestManagerRepository.Type) {
+    init(model: SearchResult, requestManager: RequestManagerRepository.Type, logger: LoggerProtocol) {
         self.products = model.products
         self.searcher = Searcher(requestManager: requestManager)
+        self.logger = logger
     }
 
     func didTapSearchButton(query: String) {
-        searcher.search(query) { result in
+        searcher.search(query) { [weak self] result in
             switch result {
             case .success(let searchResult):
-                self.products = searchResult.products
-                self.loadImages()
-                self.delegate?.reloadData()
+                self?.products = searchResult.products
+                self?.loadImages()
+                self?.delegate?.reloadData()
             case .failure(let error):
-                print(error)
+                self?.logger.logError(message: error.localizedDescription)
             }
         }
     }
@@ -49,7 +51,7 @@ class ProductListViewModel: NSObject {
                     self?.products[index].setImage(data: data)
                     self?.delegate?.reloadData()
                 case .failure(let error):
-                    print(error)
+                    self?.logger.logError(message: error.localizedDescription)
                 }
             }
         }

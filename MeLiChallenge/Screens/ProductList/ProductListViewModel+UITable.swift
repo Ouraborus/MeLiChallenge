@@ -31,7 +31,7 @@ extension ProductListViewModel: UITableViewDelegate {
             case .success(let productDetail):
                 self?.delegate?.navigateTo(productDetail)
             case .failure(let error):
-                print(error)
+                self?.logger.logError(message: error.localizedDescription)
             }
         }
     }

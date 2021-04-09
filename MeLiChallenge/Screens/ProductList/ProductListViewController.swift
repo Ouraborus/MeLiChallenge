@@ -84,7 +84,7 @@ extension ProductListViewController: ProductListDelegate {
 
     func navigateTo(_ product: ProductDetail) {
         DispatchQueue.main.async { [weak self] in
-            let viewModel = ProductDetailViewModel(productDetail: product, requestManager: RequestManager.self)
+            let viewModel = ProductDetailViewModel(productDetail: product, requestManager: RequestManager.self, logger: LogHandler.shared)
             let controller = ProductDetailViewController(viewModel: viewModel)
 
             self?.navigationController?.pushViewController(controller, animated: true)

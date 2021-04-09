@@ -10,11 +10,13 @@ import Foundation
 class ProductDetailViewModel: NSObject {
     private(set) var productDetail: ProductDetail
     private var requestManager: RequestManagerRepository.Type
+    private var logger: LoggerProtocol
     weak var delegate: ProductDetailDelegate?
 
-    init(productDetail: ProductDetail, requestManager: RequestManagerRepository.Type) {
+    init(productDetail: ProductDetail, requestManager: RequestManagerRepository.Type, logger: LoggerProtocol) {
         self.productDetail = productDetail
         self.requestManager = requestManager
+        self.logger = logger
     }
 
     func viewDidLoad() {
@@ -29,7 +31,7 @@ class ProductDetailViewModel: NSObject {
                     self?.productDetail.pictures[index].setPicture(data: data)
                     self?.delegate?.reloadData()
                 case .failure(let error):
-                    print(error)
+                    self?.logger.logError(message: error.localizedDescription)
                 }
             }
         }

@@ -19,6 +19,7 @@ struct Searcher {
             switch result {
             case .success(let data):
                 guard let result = try? JSONDecoder().decode(SearchResult.self, from: data) else {
+                    completion(.failure(.unableToParse))
                     return
                 }
 
@@ -35,6 +36,7 @@ struct Searcher {
             switch result {
             case .success(let data):
                 guard let result = try? JSONDecoder().decode([Site].self, from: data) else {
+                    completion(.failure(.unableToParse))
                     return
                 }
 
@@ -51,6 +53,7 @@ struct Searcher {
             switch result {
             case .success(let data):
                 guard let productDetail = try? JSONDecoder().decode(ProductDetail.self, from: data) else {
+                    completion(.failure(.unableToParse))
                     return
                 }
 

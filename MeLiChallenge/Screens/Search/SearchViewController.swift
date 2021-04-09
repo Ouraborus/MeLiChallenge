@@ -23,7 +23,7 @@ class SearchViewController: UIViewController {
         static let backgroundColor = UIColor(red: 0.99, green: 0.86, blue: 0.23, alpha: 1.00)
     }
 
-    private let viewModel = SearchViewModel(requestManager: RequestManager.self)
+    private let viewModel = SearchViewModel(requestManager: RequestManager.self, logger: LogHandler.shared)
 
     private lazy var headerLabel: UILabel = {
         let headerLabel = UILabel()
@@ -116,7 +116,7 @@ extension SearchViewController: SearchViewDelegate {
 
     func userTappedSearch(_ result: SearchResult) {
         DispatchQueue.main.async { [weak self] in
-            let viewModel = ProductListViewModel(model: result, requestManager: RequestManager.self)
+            let viewModel = ProductListViewModel(model: result, requestManager: RequestManager.self, logger: LogHandler.shared)
             let controller = ProductListViewController(viewModel: viewModel)
 
             self?.navigationController?.pushViewController(controller, animated: true)

@@ -8,13 +8,14 @@
 import Foundation
 
 class SearchViewModel: NSObject {
-    //var logger: LoggerProtocol
+    let logger: LoggerProtocol
     let searcher: Searcher
     private(set) var sites: [Site]?
     weak var delegate: SearchViewDelegate?
 
-    init(requestManager: RequestManagerRepository.Type) {
+    init(requestManager: RequestManagerRepository.Type, logger: LoggerProtocol) {
         self.searcher = Searcher(requestManager: requestManager)
+        self.logger = logger
     }
 
     func viewDidLoad() {
@@ -28,7 +29,7 @@ class SearchViewModel: NSObject {
                 self?.sites = sites.sorted { $0.name < $1.name }
                 self?.delegate?.reload()
             case .failure(let error):
-                print(error)
+                self?.logger.logError(message: error.localizedDescription)
             }
         }
     }

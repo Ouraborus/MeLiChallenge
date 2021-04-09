@@ -23,7 +23,7 @@ extension SearchViewModel: UISearchBarDelegate {
             case .success(let searchResult):
                 self?.delegate?.userTappedSearch(searchResult)
             case .failure(let error):
-                print(error)
+                self?.logger.logError(message: error.localizedDescription)
             }
         }
     }
